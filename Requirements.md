@@ -83,6 +83,10 @@ PCB parts are not finalized.
 		* Low RAM (64 kb)
 	* [STM32G4x1](https://www.st.com/en/microcontrollers-microprocessors/stm32g4x1.html)
 		* Has a USB 2.0 full speed data interface, so no USB to UART Serial converter required. Does not include a Lora Transceiver.
+	* [STM32L4x2 series](https://www.digikey.ca/en/product-highlight/s/stmicroelectronics/stm32-l4)
+  	* Excel at low power consumption.
+    * Also supports USB 2.0
+    * Meets the minimum peripheral requirements.
 * One external clock for the MCU.
 * A 3.3V Voltage Regulator:
 	* [AMS1117-3.3](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7158/5272_AMS1117-3.3.pdf)
@@ -103,9 +107,10 @@ PCB parts are not finalized.
 	* [HDC2080DMBR](https://www.digikey.ca/en/products/detail/texas-instruments/HDC2080DMBR/9692560) (humidity and temperature sensor)
 * GNSS:
 	* One GNSS transceiver.
-		* [MAX-M10M-20B](https://www.digikey.ca/en/products/detail/u-blox/MAX-M10M-20B/28314774)
-	* One GNSS antenna.
-* One 0805 LED
+		* [MAX-M10M-20B](https://www.digikey.ca/en/products/detail/u-blox/MAX-M10M-20B/28314774) ([datasheet](https://content.u-blox.com/sites/default/files/documents/MAX-M10M-20B_IntegrationManual_UBXDOC-963802114-13064.pdf?utm_content=UBXDOC-963802114-13064))
+	* One GNSS antenna (50 Ohm antenna).
+* One 0805 LED for MCU
+* One 0805 LED for power
 * One microSD Card Slot (SMD)
 * One connector for Power and GND.
 * 1 UART connector for the flight controller.
