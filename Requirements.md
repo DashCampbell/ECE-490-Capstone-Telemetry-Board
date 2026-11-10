@@ -1,7 +1,7 @@
 # Telemetry Board Requirements
 
 ## Overview:
-* The telemetry board's primary purpose is to collect, store, and send telemetry data.
+* The telemetry board's primary purpose is to collect, store, and send telemetry data in real time.
 	* Examples: Altitude, Temperature, Location, Orientation, etc.
 * In addition to collecting data from the flight controller, the board will also have its own sensors, some sensors may be redundant.
 * Wireless communication is needed for the board to send telemetry data in real time. 
@@ -15,8 +15,8 @@
 	* Some sensors might need 5V, in which case an additional voltage regulator will be needed for 5V power.
 * A USB-C connection that can supply power, and provide serial communication between the board and a computer.
 * Must be able to communicate with a flight controller.
-	* From research, most flight controllers can communicate using either SPI or UART communication protocols along with needing additional GPIO pins.
-	* Because the flight controller has not been selected and is subject to change, the telemetry board must have both SPI and UART connectors with additional GPIO pins.
+	* From research, most flight controllers can communicate using the UART communication protocol. 
+	* The currently selected flight controller: [https://epicfpv.ca/products/micoair743-lite-fc-only](https://epicfpv.ca/products/micoair743-lite-fc-only)
 * ESD protection (fuse, TVS diodes, etc.)
 * An LED indicating power is on.
 * At least one LED controlled by the MCU.
@@ -26,8 +26,7 @@
 	* A GNSS
 		* Used to track location.
 	* An altitude sensor (barometric meter)
-	* A temperature/humidity sensor 
-	* An IMU (Inertial Measurement Unit)
+	* A temperature and humidity sensor 
 * An MCU to control the board.
 * A serial wire debug (SWD) connection to flash firmware on the MCU.
 
@@ -38,6 +37,7 @@
 * Base material is FR-4.
 * PCB Thickness: 1.6mm
 * Minimum component size: 0603
+* Mounting Holes: 4 M3 holes (mounting hole diameter: 4mm)
 * Use a 4-Layer PCB:
 	* Inner layers are solid GND/Power planes.
 	* Better for RF applications.
@@ -58,29 +58,29 @@
 
 ## MCU Requirements:
 * Use an STM32 microcontroller.
-* One SPI and UART connection for the flight controller.
-	* Some GPIO pins for the flight controller. 
+* One UART connection for the flight controller.
 * At least one I2C connection to interface with sensors.
-* At least one SPI connection to interface with sensors.
-* At least one SPI or UART connection to interface with a LoRa transceiver.
+* At least one UART and I2C connection to interface with a GNSS.
+* At least one SPI connection to interface with a LoRa transceiver.
 * Some GPIO pins to interface with sensors.  
 * One UART connection for USB-C.
-* One SPI or SDIO connection to interface with a microSD card.
+* One SPI connection to interface with a microSD card.
 * One GPIO pin to control an LED.
 * Easy to solder (LQFP package type or similar)
 
 ### Estimated Minimum MCU Peripherals Needed:
-* At least 3x SPI interfaces.
+* At least 2x SPI interfaces.
 * At least 3x UART interfaces
-* At least 1x I2C interface.
-* One SDIO peripheral.
+* At least 2x I2C interfaces.
 * 15+ GPIO pins.
 
 ## Main Board Components:
 PCB parts are not finalized.
 * One STM32 Microcontroller:
-	* [STM32WL5x/Ex](https://www.st.com/en/microcontrollers-microprocessors/stm32wl5x-ex.html) 
-		* Includes a built-in Lora Transceiver, but may not have enough peripherals. Max clock speed is also low, 48 MHz.
+	* [~~STM32WL5x/Ex~~](https://www.st.com/en/microcontrollers-microprocessors/stm32wl5x-ex.html) 
+		* Includes a built-in Lora Transceiver, but may not have enough peripherals. 
+		* Max clock speed is low (48 MHz)
+		* Low RAM (64 kb)
 	* [STM32G4x1](https://www.st.com/en/microcontrollers-microprocessors/stm32g4x1.html)
 		* Has a USB 2.0 full speed data interface, so no USB to UART Serial converter required. Does not include a Lora Transceiver.
 * One external clock for the MCU.
@@ -91,20 +91,24 @@ PCB parts are not finalized.
 	* One USB to UART serial converter (if MCU does not have a USB interface)
 * LoRa:
 	* One LoRa Transceiver (SX1261, RM126x, etc).
+		* [DL-RFM69HC](https://www.digikey.ca/en/products/detail/sparkfun-electronics/13909/6023504)
+		* [DL-RFM69HC Breakout Board](https://www.adafruit.com/product/3071)
+		* [Semtech SX1231](https://www.digikey.com/en/products/detail/semtech-corporation/SX1231IMLTRT/2207517)
 	* One LoRa antenna (50 Ohm antenna).
+		* RP-SMA JACK R/A 50 OHM PCB
 * One Pressure sensor (barometric meter):
 	* [MPL3115A2ST1](https://www.digikey.ca/en/products/detail/stmicroelectronics/MPL3115A2ST1/16538792)
-* One Temperature sensor:
-	* [LM75BIMMX-3/NOPB](https://www.digikey.ca/en/products/detail/texas-instruments/LM75BIMMX-3-NOPB/1871951)
-* One IMU:
-	* [LSM6DSO32TR](https://www.digikey.ca/en/products/detail/stmicroelectronics/LSM6DSO32TR/11694177?s=N4IgTCBcDaIDIGUCyA2AIgg8gZjAFQCUQBdAXyA)
+* One Temperature/Humidity sensor:
+	* [LM75BIMMX-3/NOPB](https://www.digikey.ca/en/products/detail/texas-instruments/LM75BIMMX-3-NOPB/1871951) (Only temperature)
+	* [HDC2080DMBR](https://www.digikey.ca/en/products/detail/texas-instruments/HDC2080DMBR/9692560) (humidity and temperature sensor)
 * GNSS:
 	* One GNSS transceiver.
+		* [MAX-M10M-20B](https://www.digikey.ca/en/products/detail/u-blox/MAX-M10M-20B/28314774)
 	* One GNSS antenna.
 * One 0805 LED
-* One microSD Card Connector (SMD)
-* One 2 pin connector for Power and GND.
-* 2 connectors for the flight controller.
+* One microSD Card Slot (SMD)
+* One connector for Power and GND.
+* 1 UART connector for the flight controller.
 * ESD Protection:
 	* At least one TVS diode.
 
