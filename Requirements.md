@@ -95,22 +95,27 @@ PCB parts are not finalized.
 	* One USB to UART serial converter (if MCU does not have a USB interface)
 * LoRa:
 	* One LoRa Transceiver (SX1261, RM126x, etc).
-		* [DL-RFM69HC](https://www.digikey.ca/en/products/detail/sparkfun-electronics/13909/6023504)
-		* [DL-RFM69HC Breakout Board](https://www.adafruit.com/product/3071)
+		* [DL-RFM69HC](https://www.digikey.ca/en/products/detail/sparkfun-electronics/13909/6023504) (RFM69HCW)
+		  * [DL-RFM69HC Breakout Board](https://www.adafruit.com/product/3071)
 		* [Semtech SX1231](https://www.digikey.com/en/products/detail/semtech-corporation/SX1231IMLTRT/2207517)
+		* Final Pick: [RFM9x LoRa Packet](https://www.mouser.ca/en/ProductDetail/RF-Solutions/RFM95W-868S2?qs=OlC7AqGiEDnmrtVOomfBWA%3D%3D) ([datasheet](https://cdn.sparkfun.com/assets/a/e/7/e/b/RFM95_96_97_98W.pdf), [datasheet2](https://www.nicerf.com/pdf/lora127x-c1-100mw-lora-wireless-transceiver-module-v3.2.pdf))
+		  * Gets better range than the RFM69HCW. Typically 2km in line of sight, can go up to 20km with directional antennas.
+			* Already have a RFM9x dev board.
+		  * [Amazon Link](https://www.amazon.ca/OLurkthu-RFM95W-Commercial-Transceiver-915MHz/dp/B0HJHTDPFM?crid=1DW055L5C9WHS&dib=eyJ2IjoiMSJ9.S9fCXGfeP20aNMM9dmbExaBDlm8R3kTg5zFcWQ_21O8FVitzCUU01FxQynZaO4kflijqPXPpieiRacuTD1lSwfTBYXPFW2j0qLiSmOgLsodeCCmi1vzNbxL7XnGGh_Rb6S03uh8HszdrD8YCVXntxjM_nBI6dxPin44SUgL0mu8YOeuA2xFG168CjGuLpC5PVSoPZm8BjpXlRQkc3rmcxalrcal72ge1O42WTFezaIk5sNpci6QuUvMR_iBD1WDn0ORAkKaV4lMnGKuhIR4Qdrl5oYYsy7eRPQcOotkZSzQ._bXsdyFQfofP-64T70nRXQDHBsjLY4xA7VoVrpmHTpU&dib_tag=se&keywords=LoRa+RFM95W&qid=1794500471&sprefix=lora+rfm95w%2Caps%2C181&sr=8-8)
 	* One LoRa antenna (50 Ohm antenna).
 		* RP-SMA JACK R/A 50 OHM PCB
-* One Pressure sensor (barometric meter):
+* ~~One Pressure sensor (barometric meter)~~:
 	* [MPL3115A2ST1](https://www.digikey.ca/en/products/detail/stmicroelectronics/MPL3115A2ST1/16538792)
 * One Temperature/Humidity sensor:
-	* [LM75BIMMX-3/NOPB](https://www.digikey.ca/en/products/detail/texas-instruments/LM75BIMMX-3-NOPB/1871951) (Only temperature)
+	* [~~LM75BIMMX-3/NOPB~~](https://www.digikey.ca/en/products/detail/texas-instruments/LM75BIMMX-3-NOPB/1871951) (Only temperature)
 	* [HDC2080DMBR](https://www.digikey.ca/en/products/detail/texas-instruments/HDC2080DMBR/9692560) (humidity and temperature sensor)
 * GNSS:
 	* One GNSS transceiver.
 		* [MAX-M10M-20B](https://www.digikey.ca/en/products/detail/u-blox/MAX-M10M-20B/28314774) ([datasheet](https://content.u-blox.com/sites/default/files/documents/MAX-M10M-20B_IntegrationManual_UBXDOC-963802114-13064.pdf?utm_content=UBXDOC-963802114-13064))
 	* One GNSS antenna (50 Ohm antenna).
 * One 0805 LED for MCU
-* One 0805 LED for power
+* One 0805 LED for battery power
+* One 0805 LED for USB power
 * One microSD Card Slot (SMD)
 * One connector for Power and GND.
 * 1 UART connector for the flight controller.
